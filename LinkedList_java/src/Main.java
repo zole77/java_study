@@ -9,6 +9,9 @@ public class Main {
         L1.addFirst(40);
         L1.addLast(50);
         L1.delete(40);
+        L1.addLast(60);
+        L1.addLast(70);
+        L1.add(2,22);
         L1.PrintList();
     }
 }

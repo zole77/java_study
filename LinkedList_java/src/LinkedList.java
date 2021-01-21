@@ -62,6 +62,28 @@ public class LinkedList {
         }
     }
 
+    // 노드의 위치를 반환
+    Node node(int index){
+        Node x = head;
+        for(int i = 0; i < index ; i++){
+            x = x.next;
+        }
+        return x;
+    }
+
+    // 원하는 위치에 노드 삽입
+    public void add(int k, int input){
+        if(k==0){
+            addFirst(input);
+        }
+        Node tmp1 = node(k-1);      // 원하는 위치 이전의 노드를 찾아서
+        Node tmp2 = tmp1.next;
+        Node n = new Node(input);
+        tmp1.next = n;      // 그 노드의 next 를 새로 추가할 노드와 연결하고
+        n.next = tmp2;
+    }
+
+
     public void PrintList(){
         tmp = head;
         int index = 1;
