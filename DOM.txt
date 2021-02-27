@@ -1,0 +1,6 @@
+1. url.openconnection 함수로 Google Trends Server에 URLConnection 을 생성하고, parseXML 함수를 실행한다.
+2. Google Trends Server로부터 XML 문서를 받아온다.
+3. XML 문서를 DOM 문서로 파싱할 수 있는 DocumentBuilder 를 생성하기 위해 DocumentBuilderFactory의 새로운 인스턴스를 생성한다.
+4. DocumentBuilder의 인스턴스를 생성한다.
+5. XML문서를 새로운 DOM 문서로 객체를 반환한다.
+6. 반환받은 객체를 리턴한다.
