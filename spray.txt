@@ -1,0 +1,48 @@
+#include <opencv2/opencv.hpp>
+#define IMAGE		"../image/cannay_tset.jpg"
+#define nonMouse	"Non MouseEvent"	
+#define useMouse	"Mouse Event"
+#define RADIAN(x) 3.14159*x/180
+
+using namespace std;
+using namespace cv;
+
+void onMouseEvent(int event, int x, int y, int flags, void* dstImage) {
+	Mat mouseImage = *(Mat*)dstImage;
+
+	switch (event) {
+
+	case EVENT_MOUSEMOVE:
+		if (flags & EVENT_LBUTTONDBLCLK) {
+			double brushRadius = 1.0;		// 브러쉬 크기
+			srand(time(NULL));				// 난수 설정
+			int maxRadius = (brushRadius * 10) / 2;	// 최대 반지름 설정
+			for (int i = 0; i < 0.005 * 5000; i++) {
+				int randRadius = rand() % (maxRadius + 1);	// 반경안에 랜덤 좌표를 뽑기 위한 코드
+				float angle = rand() % 360;
+				circle(mouseImage, Point(randRadius * sin(RADIAN(angle)) + x, randRadius * cos(RADIAN(angle)) + y), 0.5, Scalar::all(0), -1);
+			}
+			
+		}
+		break;
+	}
+	imshow(useMouse, mouseImage);
+}
+
+
+int main() {
+	Mat image = Mat(500, 800, CV_8UC3, Scalar(255, 255, 255));	// 그림판 영상
+	
+	if (image.empty()) {
+		return -1;
+	}
+
+	imshow(useMouse, image);
+
+	setMouseCallback(useMouse, onMouseEvent, (void*)&image);
+
+	waitKey();
+
+	return 0;
+}
+
